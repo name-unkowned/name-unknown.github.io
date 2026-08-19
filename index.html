@@ -1,0 +1,89 @@
+---
+layout: default
+title: Home
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Adaptive Blog</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #333;
+            background-color: #fafafa;
+        }
+        header {
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .badge {
+            background-color: #0076ff;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .story-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e1e4e8;
+        }
+        .story-title {
+            margin-top: 0;
+            font-size: 2rem;
+            color: #111;
+        }
+        .story-date {
+            color: #6a737d;
+            font-size: 0.9rem;
+        }
+        .story-content {
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to My Blog</h1>
+        <p>The front page automatically displays the newest code file from the folder.</p>
+    </header>
+
+    <main>
+        <!-- Pulls the absolute newest post by date automatically -->
+        {% assign newest_story = site.posts.first %}
+        
+        {% if newest_story %}
+            <article class="story-card">
+                <span class="badge">Newest Story</span>
+                <h2 class="story-title">{{ newest_story.title }}</h2>
+                <div class="story-date">Published on: {{ newest_story.date | date: "%B %d, %Y" }}</div>
+                <div class="story-content">
+                    {{ newest_story.content }}
+                </div>
+            </article>
+        {% else %}
+            <div class="story-card">
+                <h2>No stories found!</h2>
+                <p>Create a <code>_posts</code> folder and add your first markdown file to see it here.</p>
+            </div>
+        {% endif %}
+    </main>
+
+</body>
+</html>
