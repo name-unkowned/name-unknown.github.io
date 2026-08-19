@@ -1,0 +1,101 @@
+---
+layout: default
+title: All Posts
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Blog Posts</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fa;
+            color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .username-header {
+            width: 100%;
+            background-color: #ffffff;
+            border-bottom: 2px solid #e1e4e8;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #0076ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .archive-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 10px;
+        }
+        .past-story-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #e1e4e8;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            margin-bottom: 30px;
+        }
+        .story-title {
+            margin-top: 0;
+            font-size: 1.6rem;
+            color: #000;
+        }
+        .story-date {
+            color: #6a737d;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="username-header">
+        MY_USERNAME
+    </header>
+
+    <div class="container">
+        <!-- Back navigation link -->
+        <a href="./index.html" class="back-btn">← Back to Home Page</a>
+
+        <h1 class="archive-title">All Published Stories</h1>
+
+        <!-- Jekyll loops through EVERY single file in your _posts folder -->
+        {% for post in site.posts %}
+            <article class="past-story-card">
+                <h2 class="story-title">{{ post.title }}</h2>
+                <div class="story-date">Published: {{ post.date | date: "%B %d, %Y" }}</div>
+                <div class="story-content">
+                    {{ post.content }}
+                </div>
+            </article>
+        {% empty %}
+            <div class="past-story-card">
+                <p>No posts found in the archives yet!</p>
+            </div>
+        {% endfor %}
+
+    </div>
+
+</body>
+</html>
